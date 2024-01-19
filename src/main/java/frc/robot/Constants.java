@@ -59,4 +59,14 @@ public final class Constants
     public static final double kI = 0;
     public static final double kD = 0;
   }
+
+  public static class ShooterConstants
+  {
+    public static final int leftID = 0;
+    public static final int rightID = 0;
+    public static final int ID775 = 0;
+    public static final int kP = 0;
+    public static final int kI = 0;
+    public static final int kD = 0;
+  }
 }
