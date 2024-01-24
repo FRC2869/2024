@@ -1,0 +1,10 @@
+since you can't comment on json files I have notes
+old pid angle
+
+  "angle": {
+    "p": 0.05,
+    "i": 0.00001,
+    "d": 1.75,
+    "f": 0,
+    "iz": 0
+  }
