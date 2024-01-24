@@ -50,12 +50,9 @@ public class RobotContainer {
     configureBindings();
 
     AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,
-        () -> MathUtil.applyDeadband(driverXbox.getLeftY(),
-            OperatorConstants.LEFT_Y_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getLeftX(),
-            OperatorConstants.LEFT_X_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getRightX(),
-            OperatorConstants.RIGHT_X_DEADBAND),
+        () -> Inputs.getTranslationY(),
+        () -> Inputs.getTranslationX(),
+        () -> Inputs.getRotation(),
         driverXbox::getYButtonPressed,
         driverXbox::getAButtonPressed,
         driverXbox::getXButtonPressed,
@@ -78,9 +75,9 @@ public class RobotContainer {
     // left stick controls translation
     // right stick controls the angular velocity of the robot
     Command driveFieldOrientedAnglularVelocity = drivebase.driveCommand(
-        () -> MathUtil.applyDeadband(driverXbox.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
-        () -> driverXbox.getRightX());
+        () -> Inputs.getTranslationY(),
+        () -> Inputs.getTranslationX(),
+        () -> Inputs.getRotation());
 
     Command driveFieldOrientedDirectAngleSim = drivebase.simDriveCommand(
         () -> MathUtil.applyDeadband(driverXbox.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
