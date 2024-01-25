@@ -36,7 +36,7 @@ public class Inputs {
 		if(Math.abs(speed) < .1){
 			speed = 0;
 		}
-        speed = translationXSlew.calculate(speed);
+        // speed = translationXSlew.calculate(speed);
         // speed = smoothInputs(speed, translationXList);
         SmartDashboard.putNumber("X", speed);
         return speed;
@@ -53,7 +53,7 @@ public class Inputs {
 			speed = 0;
 		}
 
-        speed = translationYSlew.calculate(speed);
+        // speed = translationYSlew.calculate(speed);
         // speed = smoothInputs(speed, translationYList);
         SmartDashboard.putNumber("Y", speed);
 
@@ -64,7 +64,7 @@ public class Inputs {
     public static double getRotation(){
 		// return 0.0;
 		double speed = driver1.getRightX();
-		if(Math.abs(speed) < .1){
+		if(Math.abs(speed) < .2){
 			speed = 0;
 		}
 
