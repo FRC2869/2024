@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
@@ -15,6 +14,7 @@ public class Inputs {
     private static final XboxController driver1 = new XboxController(OperatorConstants.driver1ControllerPort);
     private static final CommandJoystick driver1Cmd = new CommandJoystick(OperatorConstants.driver1ControllerPort);
 	private static final CommandGenericHID operatorCmd = new CommandGenericHID(OperatorConstants.operatorControllerPort);
+    private static final CommandJoystick elevatorCmd = new CommandJoystick(OperatorConstants.elevatorControllerPort);
     
     
     private static double smoothInputs(double value, List<Double> list){
@@ -74,5 +74,25 @@ public class Inputs {
         return speed;
     }
 
+    public static boolean getOverride() {
+        return driver1.getStartButtonPressed();
+    }
 
+    public static double getOverrideY() {
+        return elevatorCmd.getY();
+    }
+
+    public static boolean elevatorMax() {
+        return driver1.getRightBumperPressed();
+    }
+
+    public static boolean elevatorMin() {
+        return driver1.getLeftBumperPressed();
+    }
+
+    public static boolean intake() {
+        return driver1.getYButtonPressed();
+    }
+
+    
 }

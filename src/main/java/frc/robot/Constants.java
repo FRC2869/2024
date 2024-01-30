@@ -57,9 +57,8 @@ public final class Constants
   {
     public static final int motorID = 0;
     public static final double speed = 0;
-    public static final double kP = 0;
-    public static final double kI = 0;
-    public static final double kD = 0;
+    //SET THIS
+    public static final double maxHeight = 0;
   }
 
   public static class ShooterConstants

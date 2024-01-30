@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.io.File;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -15,11 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
-import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
-import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import java.io.File;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -48,27 +46,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-
-    AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,
-        () -> Inputs.getTranslationY(),
-        () -> Inputs.getTranslationX(),
-        () -> Inputs.getRotation(),
-        driverXbox::getYButtonPressed,
-        driverXbox::getAButtonPressed,
-        driverXbox::getXButtonPressed,
-        driverXbox::getBButtonPressed);
-
-    // Applies deadbands and inverts controls because joysticks
-    // are back-right positive while robot
-    // controls are front-left positive
-    // left stick controls translation
-    // right stick controls the desired angle NOT angular rotation
-    Command driveFieldOrientedDirectAngle = drivebase.driveCommand(
-        () -> MathUtil.applyDeadband(driverXbox.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getRightX(),.1),
-        () -> MathUtil.applyDeadband(driverXbox.getRightY(),.1));
-
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
     // controls are front-left positive

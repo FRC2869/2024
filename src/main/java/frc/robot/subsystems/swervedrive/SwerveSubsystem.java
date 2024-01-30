@@ -17,6 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -34,6 +35,7 @@ import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 public class SwerveSubsystem extends SubsystemBase
 {
 
+  private static SwerveSubsystem swerve;
   /**
    * Swerve drive object.
    */
@@ -42,6 +44,11 @@ public class SwerveSubsystem extends SubsystemBase
    * Maximum speed of the robot in meters per second, used to limit acceleration.
    */
   public        double      maximumSpeed = Units.feetToMeters(14.5);
+
+  public static SwerveSubsystem getInstance() {
+    if (swerve == null) swerve = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
+    return swerve;
+  }
 
   /**
    * Initialize {@link SwerveDrive} with the directory provided.
