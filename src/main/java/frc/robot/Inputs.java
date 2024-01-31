@@ -94,5 +94,8 @@ public class Inputs {
         return driver1.getYButtonPressed();
     }
 
+    public static boolean getLimelight() {
+        return false;
+    }
     
 }

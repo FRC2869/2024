@@ -51,14 +51,16 @@ public final class Constants
     public static final double TURN_CONSTANT = 0.75;
     public static final int driver1ControllerPort = 0;
     public static final int operatorControllerPort = 0;
+    public static final int elevatorControllerPort = 0;
   }
 
   public static class ElevatorConstants
   {
-    public static final int motorID = 0;
-    public static final double speed = 0;
     //SET THIS
-    public static final double maxHeight = 0;
+    public static final double maxHeight = 10.25;
+    public static final double minHeight = 0;
+    public static final double speed = 0.5;
+    public static final double midHeight = 5.125;
   }
 
   public static class ShooterConstants
@@ -69,5 +71,27 @@ public final class Constants
     public static final int kP = 0;
     public static final int kI = 0;
     public static final int kD = 0;
+  }
+  public static class IntakeConstants
+  { 
+    public static final int intakeChannel1 = 1;
+    public static final int intakeChannel2 = 5;
+    public static final double speed = 3.3;
+  }
+
+  public static class LimelightConstants
+  {
+    // LimeLight details
+    public static final double lensHeight = 18.008712;
+    public static final double lensFromCenter = 6.86;
+    
+    // AprilTag heights
+    public static final double sourceTags = 48.125;
+    public static final double speakerTags = 51.875;
+    public static final double ampTags = 48.125;
+    public static final double stageTags = 47.5;
+
+    // Other
+    public static final double distance = 0;
   }
 }
