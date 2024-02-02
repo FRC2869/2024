@@ -94,4 +94,10 @@ public final class Constants
     // Other
     public static final double distance = 0;
   }
+  
+  public static class PivotIntakeSubsystem {
+    public static final double pos1;
+    public static final double pos2;
+    public static final double pos3;
+  }
 }

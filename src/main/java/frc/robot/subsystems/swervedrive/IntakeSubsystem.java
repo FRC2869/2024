@@ -11,6 +11,8 @@ import frc.robot.Constants;
 import frc.robot.Inputs;
 
 public class IntakeSubsystem extends SubsystemBase {
+
+  private static IntakeSubsystem instance;
   /** Creates a new IntakeSubsystem. */
   private WPI_TalonSRX rightTalon;
   private WPI_TalonSRX leftTalon;
@@ -29,6 +31,11 @@ public class IntakeSubsystem extends SubsystemBase {
   public void stop() {
     leftTalon.set(0);
     rightTalon.set(0);
+  }
+
+  public static IntakeSubsystem getInstance() {
+    if (instance == null) instance = new IntakeSubsystem();
+    return instance;
   }
 
     @Override

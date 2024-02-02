@@ -17,7 +17,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.subsystems.swervedrive.IntakeSubsystem;
+import frc.robot.subsystems.swervedrive.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
+import frc.robot.subsystems.swervedrive.LimelightSubsystem;
+
+import frc.robot.commands.Intake;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.TrackAprilTag;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -40,12 +48,24 @@ public class RobotContainer {
   // CommandJoystick(3);//(OperatorConstants.DRIVER_CONTROLLER_PORT);
   XboxController driverXbox = new XboxController(0);
 
+  private final ShooterSubsystem shootSubSys = ShooterSubsystem.getInstance();
+
+  private final IntakeSubsystem intakeSubSys = IntakeSubsystem.getInstance();
+
+  private final LimelightSubsystem llSubSys = LimelightSubsystem.getInstance();
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    
     // Configure the trigger bindings
     configureBindings();
+
+    shootSubSys.setDefaultCommand(new Shoot());
+    intakeSubSys.setDefaultCommand(new Intake());
+    llSubSys.setDefaultCommand(new TrackAprilTag());
+
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
     // controls are front-left positive
@@ -85,6 +105,9 @@ public class RobotContainer {
     new JoystickButton(driverXbox, 3).onTrue(new InstantCommand(drivebase::lock));
     // new JoystickButton(driverXbox, 3).whileTrue(new RepeatCommand(new
     // InstantCommand(drivebase::lock, drivebase)));
+    Inputs.getShoot().onTrue(new Shoot());
+    Inputs.getIntake().onTrue(new Intake());
+    Inputs.getLimelight().onTrue(new TrackAprilTag());
   }
 
   /**
