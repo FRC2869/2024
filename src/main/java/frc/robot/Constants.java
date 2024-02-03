@@ -95,9 +95,10 @@ public final class Constants
     public static final double distance = 0;
   }
   
-  public static class PivotIntakeSubsystem {
-    public static final double pos1;
-    public static final double pos2;
-    public static final double pos3;
+  public static class PivotConstants {
+    public static final double intakeFloorPosition = 0;
+    public static final double intakeTransferPosition = 0;
+    public static final double shooterTransferPosition = 0;
+    public static final double shooterShootPosition = 0;
   }
 }

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.ElevatorConstants;
 import frc.robot.subsystems.swervedrive.ElevatorSubsystem;
 
 public class SetPosition extends Command {
@@ -48,7 +49,7 @@ public class SetPosition extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ((elevator.getPosition() == pos) || (elevator.getPosition() >= ElevatorConstants.maxHeight) || (elevator.getPosition <= ElevatorConstants.minHeight)) {
+    if ((elevator.getPosition() == pos) || (elevator.getPosition() >= ElevatorConstants.maxHeight) || (elevator.getPosition() <= ElevatorConstants.minHeight)) {
       return true;
     } else {
       return false;

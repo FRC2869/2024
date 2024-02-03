@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Inputs;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -28,6 +27,11 @@ public class IntakeSubsystem extends SubsystemBase {
       rightTalon.set(.5);
   }
 
+  public void outtake() {
+      leftTalon.set(-.5);
+      rightTalon.set(-.5);
+  }
+
   public void stop() {
     leftTalon.set(0);
     rightTalon.set(0);
@@ -36,15 +40,5 @@ public class IntakeSubsystem extends SubsystemBase {
   public static IntakeSubsystem getInstance() {
     if (instance == null) instance = new IntakeSubsystem();
     return instance;
-  }
-
-    @Override
-  public void periodic() {
-    if (Inputs.intake()) {
-      intake();
-    }
-    else {
-      stop();
-    }
   }
 }

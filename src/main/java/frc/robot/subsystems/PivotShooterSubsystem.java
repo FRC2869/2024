@@ -6,7 +6,7 @@ import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PivotShooterSubsystem extends SubsystemBase {
-    private static PivotIntakeSubsystem pivot;
+    private static PivotShooterSubsystem pivot;
 
     
     private double position;
@@ -14,8 +14,8 @@ public class PivotShooterSubsystem extends SubsystemBase {
     private boolean isMoving;
     private CANSparkFlex sparkMax;
 
-    public static PivotIntakeSubsystem getInstance() {
-        if (pivot == null) pivot = new PivotIntakeSubsystem();
+    public static PivotShooterSubsystem getInstance() {
+        if (pivot == null) pivot = new PivotShooterSubsystem();
         return pivot;
     }
 
