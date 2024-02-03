@@ -33,9 +33,12 @@ public class SetPosition extends Command {
     if (elevator.getPosition() < pos) {
       elevator.setSpeed(s);
     }
-    else {
+    else if (elevator.getPosition() > pos) {
       elevator.setSpeed(-s);
+    } else {
+      elevator.setSpeed(0);
     }
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -45,6 +48,10 @@ public class SetPosition extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if ((elevator.getPosition() == pos) || (elevator.getPosition() >= ElevatorConstants.maxHeight) || (elevator.getPosition <= ElevatorConstants.minHeight)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
