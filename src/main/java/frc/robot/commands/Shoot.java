@@ -5,10 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Inputs;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class Shoot extends Command {
+
+  ShooterSubsystem shooter = ShooterSubsystem.getInstance();
+
   /** Creates a new Shoot. */
   public Shoot() {
+    addRequirements(shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +24,9 @@ public class Shoot extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    shooter.shoot();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -27,6 +35,9 @@ public class Shoot extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(Inputs.getShoot().getAsBoolean() == false) {
+      return true;
+    }
     return false;
   }
 }

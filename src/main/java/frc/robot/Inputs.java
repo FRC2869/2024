@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 
 public class Inputs {
     private static final XboxController driver1 = new XboxController(OperatorConstants.driver1ControllerPort);
-    private static final CommandJoystick driver1Cmd = new CommandJoystick(OperatorConstants.driver1ControllerPort);
+    private static final CommandXboxController driver1Cmd = new CommandXboxController(OperatorConstants.driver1ControllerPort);
 	private static final CommandGenericHID operatorCmd = new CommandGenericHID(OperatorConstants.operatorControllerPort);
     private static final CommandJoystick elevatorCmd = new CommandJoystick(OperatorConstants.elevatorControllerPort);
     
@@ -74,28 +76,36 @@ public class Inputs {
         return speed;
     }
 
-    public static boolean getOverride() {
-        return driver1.getStartButtonPressed();
+    public static Trigger getOverride() {
+        return driver1Cmd.start();
     }
 
     public static double getOverrideY() {
         return elevatorCmd.getY();
     }
 
-    public static boolean elevatorMax() {
-        return driver1.getRightBumperPressed();
+    public static Trigger elevatorMax() {
+        return driver1Cmd.rightBumper();
     }
 
-    public static boolean elevatorMin() {
-        return driver1.getLeftBumperPressed();
+    public static Trigger elevatorMin() {
+        return driver1Cmd.leftBumper();
     }
 
-    public static boolean intake() {
-        return driver1.getYButtonPressed();
+    public static Trigger getLimelight() {
+        return driver1Cmd.a();
     }
 
-    public static boolean getLimelight() {
-        return false;
+    public static Trigger getShoot() {
+        return driver1Cmd.b();
+    }
+
+    public static Trigger getIntake() {
+        return driver1Cmd.y();
+    }
+
+    public static Trigger getOuttake() {
+        return driver1Cmd.x();
     }
     
 }

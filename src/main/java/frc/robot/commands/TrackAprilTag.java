@@ -8,7 +8,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Inputs;
-import frc.robot.subsystems.swervedrive.LimelightSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 public class TrackAprilTag extends Command {
@@ -20,7 +20,6 @@ public class TrackAprilTag extends Command {
   private double vx;
   private double vy;
   private double angle;
-  private double error;
 
   /** Creates a new TrackAprilTag. */
   public TrackAprilTag() {
@@ -57,7 +56,7 @@ public class TrackAprilTag extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (transformArray[0] < error && transformArray[0] > -error && transformArray[1] < Constants.LimelightConstants.distance) {
+    if (transformArray[0] < Constants.LimelightConstants.errorX && transformArray[0] > -Constants.LimelightConstants.errorX && transformArray[1] + Constants.LimelightConstants.errorY < Constants.LimelightConstants.distance) {
       return true;
     }
     return false;

@@ -17,12 +17,14 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.subsystems.swervedrive.IntakeSubsystem;
-import frc.robot.subsystems.swervedrive.ShooterSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import frc.robot.subsystems.swervedrive.LimelightSubsystem;
-
+import frc.robot.commands.Elevator;
 import frc.robot.commands.Intake;
+import frc.robot.commands.Outtake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.TrackAprilTag;
 
@@ -52,7 +54,11 @@ public class RobotContainer {
 
   private final IntakeSubsystem intakeSubSys = IntakeSubsystem.getInstance();
 
+  private final IntakeSubsystem outtakeSubSys = IntakeSubsystem.getInstance();
+
   private final LimelightSubsystem llSubSys = LimelightSubsystem.getInstance();
+
+  private final ElevatorSubsystem elSubSys = ElevatorSubsystem.getInstance();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -65,6 +71,8 @@ public class RobotContainer {
     shootSubSys.setDefaultCommand(new Shoot());
     intakeSubSys.setDefaultCommand(new Intake());
     llSubSys.setDefaultCommand(new TrackAprilTag());
+    elSubSys.setDefaultCommand(new Elevator());
+    outtakeSubSys.setDefaultCommand(new Outtake());
 
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
@@ -107,7 +115,12 @@ public class RobotContainer {
     // InstantCommand(drivebase::lock, drivebase)));
     Inputs.getShoot().onTrue(new Shoot());
     Inputs.getIntake().onTrue(new Intake());
+    Inputs.getOuttake().onTrue(new Outtake());
     Inputs.getLimelight().onTrue(new TrackAprilTag());
+    
+    Inputs.elevatorMax().onTrue(new Elevator());
+    Inputs.elevatorMin().onTrue(new Elevator());
+    Inputs.getOverride().onTrue(new Elevator());
   }
 
   /**

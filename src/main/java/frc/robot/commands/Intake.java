@@ -5,8 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.swervedrive.IntakeSubsystem;
 import frc.robot.Inputs;
+import frc.robot.subsystems.IntakeSubsystem;
 
 
 public class Intake extends Command {
@@ -40,7 +40,7 @@ public class Intake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Inputs.getIntake().getAsBoolean() == false) {
+    if(!Inputs.getIntake().getAsBoolean()) {
       return true;
     }
     return false;

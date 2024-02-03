@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.PivotIntakeSubsystem;
 
-public class floorPickup extends Command {
+public class PivotFloorPickup extends Command {
   PivotIntakeSubsystem intakePivot = PivotIntakeSubsystem.getInstance();
 
   /** Creates a new floorPickup. */
-  public floorPickup() {
+  public PivotFloorPickup() {
     addRequirements(intakePivot);
     // Use addRequirements() here to declare subsystem dependencies.
   }
