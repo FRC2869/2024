@@ -91,6 +91,9 @@ public final class Constants
     public static final double ampTags = 48.125;
     public static final double stageTags = 47.5;
 
+    public static final double errorX = 0;
+    public static final double errorY = 0;
+
     // Other
     public static final double distance = 0;
   }
