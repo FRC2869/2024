@@ -50,14 +50,6 @@ public class RobotContainer {
   // CommandJoystick(3);//(OperatorConstants.DRIVER_CONTROLLER_PORT);
   XboxController driverXbox = new XboxController(0);
 
-  private final ShooterSubsystem shootSubSys = ShooterSubsystem.getInstance();
-
-  private final IntakeSubsystem intakeSubSys = IntakeSubsystem.getInstance();
-
-  private final IntakeSubsystem outtakeSubSys = IntakeSubsystem.getInstance();
-
-  private final LimelightSubsystem llSubSys = LimelightSubsystem.getInstance();
-
   private final ElevatorSubsystem elSubSys = ElevatorSubsystem.getInstance();
 
   /**
@@ -68,11 +60,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    shootSubSys.setDefaultCommand(new Shoot());
-    intakeSubSys.setDefaultCommand(new Intake());
-    llSubSys.setDefaultCommand(new TrackAprilTag());
     elSubSys.setDefaultCommand(new Elevator());
-    outtakeSubSys.setDefaultCommand(new Outtake());
 
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
