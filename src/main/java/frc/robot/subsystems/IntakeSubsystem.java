@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+//REIVEW: Add a function to see if a game piece is in the intake
 public class IntakeSubsystem extends SubsystemBase {
 
   private static IntakeSubsystem instance;

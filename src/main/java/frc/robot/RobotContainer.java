@@ -22,11 +22,11 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import frc.robot.commands.Elevator;
-import frc.robot.commands.Intake;
-import frc.robot.commands.Outtake;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.TrackAprilTag;
+import frc.robot.commands.Elevator.Elevator;
+import frc.robot.commands.Intake.Intake;
+import frc.robot.commands.Intake.Outtake;
+import frc.robot.commands.LimeLight.TrackAprilTag;
+import frc.robot.commands.Shooter.Shoot;
 
 
 /**

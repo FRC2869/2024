@@ -2,19 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Inputs;
 import frc.robot.subsystems.IntakeSubsystem;
 
-
-public class Outtake extends Command {
+//REVIEW: Make this an instant command
+public class Intake extends Command {
 
   private final IntakeSubsystem intake = IntakeSubsystem.getInstance();
   //Scanner scan = new Scanner(System.in);
   /** Creates a new Intake. */
-  public Outtake() {
+  public Intake() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
   }
@@ -26,7 +26,7 @@ public class Outtake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.outtake();
+    intake.intake();
     // System.out.println("Is your name Jackson? (y/n)");
     // String input = scan.nextLine();
     // if(input.equals("y")) {

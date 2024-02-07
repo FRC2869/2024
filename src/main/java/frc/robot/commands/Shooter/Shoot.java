@@ -2,31 +2,31 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
-import frc.robot.subsystems.PivotIntakeSubsystem;
+import frc.robot.Inputs;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class PivotFloorPickup extends Command {
-  PivotIntakeSubsystem intakePivot = PivotIntakeSubsystem.getInstance();
+public class Shoot extends Command {
 
-  /** Creates a new floorPickup. */
-  public PivotFloorPickup() {
-    addRequirements(intakePivot);
+  ShooterSubsystem shooter = ShooterSubsystem.getInstance();
+
+  /** Creates a new Shoot. */
+  public Shoot() {
+    addRequirements(shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    intakePivot.setPosition(Constants.PivotConstants.intakeFloorPosition);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    //REVIEW: Don't forget you have to rev the shooter and make sure it is at the right speed before shooting.
+    shooter.shoot();
   }
 
   // Called once the command ends or is interrupted.
@@ -35,7 +35,10 @@ public class PivotFloorPickup extends Command {
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
-    return true;
+  public boolean isFinished() {//REVIEW: You can do this by just using the .whileTrue() on teh trigger when you use it.
+    if(Inputs.getShoot().getAsBoolean() == false) {
+      return true;
+    }
+    return false;
   }
 }
