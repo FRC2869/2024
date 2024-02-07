@@ -7,7 +7,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Inputs;
 
 //IDC abt this class rn
 public class LimelightSubsystem extends SubsystemBase {
@@ -16,10 +15,6 @@ public class LimelightSubsystem extends SubsystemBase {
 
   private NetworkTable table;
   private NetworkTableEntry transform;
-
-  private double vx;
-  private double vy;
-  private double angle;
 
   public static LimelightSubsystem getInstance() {
     if (instance == null) instance = new LimelightSubsystem();

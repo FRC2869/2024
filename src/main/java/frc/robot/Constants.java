@@ -71,6 +71,10 @@ public final class Constants
     public static final int kP = 0;
     public static final int kI = 0;
     public static final int kD = 0;
+    public static double kMinOutput;
+    public static double kF;
+    public static double kMaxOutput;
+    public static double kIz;
   }
   public static class IntakeConstants
   { 
@@ -103,5 +107,10 @@ public final class Constants
     public static final double intakeTransferPosition = 0;
     public static final double shooterTransferPosition = 0;
     public static final double shooterShootPosition = 0;
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double kF = 0;
+    public static final double kMaxAutoPower = 0;
   }
 }

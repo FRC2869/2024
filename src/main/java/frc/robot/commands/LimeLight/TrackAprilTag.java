@@ -4,10 +4,8 @@
 
 package frc.robot.commands.LimeLight;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.Inputs;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
@@ -46,7 +44,7 @@ public class TrackAprilTag extends Command {
     } else if (transformArray[1] > Constants.LimelightConstants.distance) {
       vy = .5;
     }
-    swerve.driveCommand(() -> vx, () -> vy, () -> angle);
+    swerve.driveCommand(vx, vy, angle);
   }
 
   // Called once the command ends or is interrupted.
