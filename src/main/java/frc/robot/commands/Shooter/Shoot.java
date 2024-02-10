@@ -4,14 +4,19 @@
 
 package frc.robot.commands.Shooter;
 
+import java.util.Timer;
+
+import edu.wpi.first.hal.simulation.ConstBufferCallback;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.Inputs;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class Shoot extends Command {
 
   ShooterSubsystem shooter = ShooterSubsystem.getInstance();
-
+  private boolean hasRun;
+  private double startTime;
   /** Creates a new Shoot. */
   public Shoot() {
     addRequirements(shooter);
@@ -25,20 +30,27 @@ public class Shoot extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(!hasRun) {
+      hasRun = true;
+      startTime = Constants.timer.get();
+    }
     //REVIEW: Don't forget you have to rev the shooter and make sure it is at the right speed before shooting.
-    shooter.shoot();
+    shooter.rev();
+    if(Constants.timer.get()-startTime>3){
+      shooter.shoot();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    shooter.stopFeeder();
+    shooter.stopShooter();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {//REVIEW: You can do this by just using the .whileTrue() on teh trigger when you use it.
-    if(Inputs.getShoot().getAsBoolean() == false) {
-      return true;
-    }
     return false;
   }
 }

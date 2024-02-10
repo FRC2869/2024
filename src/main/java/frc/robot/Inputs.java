@@ -19,62 +19,62 @@ public class Inputs {
     private static final CommandJoystick elevatorCmd = new CommandJoystick(OperatorConstants.elevatorControllerPort);
     
     
-    private static double smoothInputs(double value, List<Double> list){
-        list.add(value);
-        list.remove(0);
-        double total=0;
-        for(int i=0;i<list.size();i++){
-            total += list.get(i);
-        }
+    // private static double smoothInputs(double value, List<Double> list){
+    //     list.add(value);
+    //     list.remove(0);
+    //     double total=0;
+    //     for(int i=0;i<list.size();i++){
+    //         total += list.get(i);
+    //     }
 
-        return total/list.size();
-    }
-    private static SlewRateLimiter translationXSlew = new SlewRateLimiter(10, -2, 0);
+    //     return total/list.size();
+    // }
+    // private static SlewRateLimiter translationXSlew = new SlewRateLimiter(10, -2, 0);
     
-    private static List<Double> translationXList = new ArrayList<>(10); 
-    public static double getTranslationX(){
-		// return 0.0;
-		double speed = driver1.getLeftX();
-		if(Math.abs(speed) < .1){
-			speed = 0;
-		}
-        // speed = translationXSlew.calculate(speed);
-        // speed = smoothInputs(speed, translationXList);
-        SmartDashboard.putNumber("X", speed);
-        return speed;
-    }
+    // private static List<Double> translationXList = new ArrayList<>(10); 
+    // public static double getTranslationX(){
+	// 	// return 0.0;
+	// 	double speed = driver1.getLeftX();
+	// 	if(Math.abs(speed) < .1){
+	// 		speed = 0;
+	// 	}
+    //     // speed = translationXSlew.calculate(speed);
+    //     // speed = smoothInputs(speed, translationXList);
+    //     SmartDashboard.putNumber("X", speed);
+    //     return speed;
+    // }
 
 
-    private static SlewRateLimiter translationYSlew = new SlewRateLimiter(10, -2, 0);
+    // private static SlewRateLimiter translationYSlew = new SlewRateLimiter(10, -2, 0);
 
-    private static List<Double> translationYList = new ArrayList<>(10); 
-    public static double getTranslationY(){
-		// return 0.0;
-		double speed = driver1.getLeftY();
-		if(Math.abs(speed) < .1){
-			speed = 0;
-		}
+    // private static List<Double> translationYList = new ArrayList<>(10); 
+    // public static double getTranslationY(){
+	// 	// return 0.0;
+	// 	double speed = driver1.getLeftY();
+	// 	if(Math.abs(speed) < .1){
+	// 		speed = 0;
+	// 	}
 
-        // speed = translationYSlew.calculate(speed);
-        // speed = smoothInputs(speed, translationYList);
-        SmartDashboard.putNumber("Y", speed);
+    //     // speed = translationYSlew.calculate(speed);
+    //     // speed = smoothInputs(speed, translationYList);
+    //     SmartDashboard.putNumber("Y", speed);
 
-        return speed;
-    }
+    //     return speed;
+    // }
 
-    private static List<Double> rotationList = new ArrayList<>(10); 
-    public static double getRotation(){
-		// return 0.0;
-		double speed = driver1.getRightX();
-		if(Math.abs(speed) < .2){
-			speed = 0;
-		}
+    // private static List<Double> rotationList = new ArrayList<>(10); 
+    // public static double getRotation(){
+	// 	// return 0.0;
+	// 	double speed = driver1.getRightX();
+	// 	if(Math.abs(speed) < .2){
+	// 		speed = 0;
+	// 	}
 
-        // speed = smoothInputs(speed, rotationList);
-        SmartDashboard.putNumber("Z", speed);
+    //     // speed = smoothInputs(speed, rotationList);
+    //     SmartDashboard.putNumber("Z", speed);
 
-        return speed;
-    }
+    //     return speed;
+    // }
 
     public static Trigger getOverride() {
         return driver1Cmd.start();
@@ -93,7 +93,8 @@ public class Inputs {
     }
 
     public static Trigger getLimelight() {
-        return driver1Cmd.a();
+        // return driver1Cmd.a();
+        return null;
     }
 
     public static Trigger getShoot() {
@@ -108,4 +109,21 @@ public class Inputs {
         return driver1Cmd.x();
     }
     
+
+    public static double getManualElevatorSpeed(){
+        return (driver1Cmd.getRightTriggerAxis()-driver1Cmd.getLeftTriggerAxis())*.1;
+    }
+    
+    public static double getManualIntakePivotSpeed(){
+        return driver1Cmd.getLeftX()*.25;
+    }
+
+    public static double getManualShooterPivotSpeed(){
+        return driver1Cmd.getRightX()*.25;
+    }
+
+    public static Trigger getFeed() {
+        return driver1Cmd.a();
+    }
 }
+

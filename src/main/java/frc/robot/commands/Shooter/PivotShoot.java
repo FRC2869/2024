@@ -20,7 +20,7 @@ public class PivotShoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shootPivot.setPosition(Constants.PivotConstants.shooterShootPosition);
+    shootPivot.setPos(Constants.PivotConstants.shooterShootPosition);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Timer;
 import swervelib.math.Matter;
 import swervelib.parser.PIDFConfig;
 
@@ -19,7 +20,7 @@ import swervelib.parser.PIDFConfig;
  */
 public final class Constants
 {
-
+  public static Timer timer = new Timer();
   public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
   public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS);
   public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
@@ -71,6 +72,7 @@ public final class Constants
     public static final int kP = 0;
     public static final int kI = 0;
     public static final int kD = 0;
+    public static final int feederID = 0;
     public static double kMinOutput;
     public static double kF;
     public static double kMaxOutput;
@@ -81,6 +83,29 @@ public final class Constants
     public static final int intakeChannel1 = 1;
     public static final int intakeChannel2 = 5;
     public static final double speed = 3.3;
+    public static final int PivotID = 0;
+    public static final int intakeID1 = 0;
+    public static final int intakeID2 = 0;
+    public static final double kMinOutput = 0;
+    public static final double kMaxOutput = 0;
+    public static final double kF = 0;
+    public static final double kIz = 0;
+    public static final double kD = 0;
+    public static final double kI = 0;
+    public static final double kP = 0;
+    public static final double gearRatio = 0;
+    public static final double startingPosition = 0;
+    public static final double kMinAngle = 0;
+    public static final double kMaxAngle = 0;
+
+    public static enum PositionsIntake {
+      STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
+    }
+
+    public static double getTargetPos(PositionsIntake storage2) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'getTargetPos'");
+    }
   }
 
   public static class LimelightConstants

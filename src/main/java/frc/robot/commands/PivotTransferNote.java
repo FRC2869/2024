@@ -22,8 +22,8 @@ public class PivotTransferNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakePivot.setPosition(Constants.PivotConstants.intakeTransferPosition);
-    shootPivot.setPosition(Constants.PivotConstants.shooterTransferPosition);
+    intakePivot.setPos(Constants.PivotConstants.intakeTransferPosition);
+    shootPivot.setPos(Constants.PivotConstants.shooterTransferPosition);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

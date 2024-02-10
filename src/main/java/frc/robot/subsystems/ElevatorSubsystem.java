@@ -28,6 +28,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         elevator2 =  new CANSparkMax(0, MotorType.kBrushless);
         encoder1 = elevator1.getEncoder();
         encoder2 = elevator2.getEncoder();
+        elevator1.follow(elevator2, true);
         //REVIEW: Look at 2023 code and add the initalize sparks function
     }
 
@@ -56,10 +57,8 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void periodic() {
         if(posControl){
             //This is how to set position on Sparks
-            elevator1.getPIDController().setReference(pos, ControlType.kPosition);
-            elevator2.getPIDController().setReference(-pos, ControlType.kPosition);
+            elevator2.getPIDController().setReference(pos, ControlType.kPosition);
         }else{
-            elevator1.set(speed);
             elevator2.set(-speed);
         }
     }

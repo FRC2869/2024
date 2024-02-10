@@ -4,11 +4,6 @@
 
 package frc.robot;
 
-import java.io.File;
-
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -16,14 +11,16 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.swervedrive.SwerveSubsystem;
+import frc.robot.commands.Elevator.DefaultElevatorCommand;
 import frc.robot.commands.Elevator.Elevator;
+import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.Intake.Outtake;
-import frc.robot.commands.LimeLight.TrackAprilTag;
+import frc.robot.commands.Shooter.DefaultShooterPivotCommand;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.PivotIntakeSubsystem;
+import frc.robot.subsystems.PivotShooterSubsystem;
 
 
 /**
@@ -37,8 +34,8 @@ import frc.robot.commands.Shooter.Shoot;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
-  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
-      "swerve"));
+  // private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+      // "swerve"));
   // CommandJoystick rotationController = new CommandJoystick(1);
   // Replace with CommandPS4Controller or CommandJoystick if needed
   CommandJoystick driverController = new CommandJoystick(1);
@@ -57,25 +54,27 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    elSubSys.setDefaultCommand(new Elevator());
-
+    // elSubSys.setDefaultCommand(new Elevator());
+    elSubSys.setDefaultCommand(new DefaultElevatorCommand());
+    PivotIntakeSubsystem.getInstance().setDefaultCommand(new DefaultIntakeCommand());
+    PivotShooterSubsystem.getInstance().setDefaultCommand(new DefaultShooterPivotCommand());
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
     // controls are front-left positive
     // left stick controls translation
     // right stick controls the angular velocity of the robot
-    Command driveFieldOrientedAnglularVelocity = drivebase.driveCommand(
-        () -> Inputs.getTranslationY(),
-        () -> Inputs.getTranslationX(),
-        () -> Inputs.getRotation());
+    // Command driveFieldOrientedAnglularVelocity = drivebase.driveCommand(
+    //     () -> Inputs.getTranslationY(),
+    //     () -> Inputs.getTranslationX(),
+    //     () -> Inputs.getRotation());
 
-    Command driveFieldOrientedDirectAngleSim = drivebase.simDriveCommand(
-        () -> MathUtil.applyDeadband(driverXbox.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
-        () -> MathUtil.applyDeadband(driverXbox.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
-        () -> driverXbox.getRawAxis(2));
+    // Command driveFieldOrientedDirectAngleSim = drivebase.simDriveCommand(
+    //     () -> MathUtil.applyDeadband(driverXbox.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
+    //     () -> MathUtil.applyDeadband(driverXbox.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
+    //     () -> driverXbox.getRawAxis(2));
 
-    drivebase.setDefaultCommand(
-        !RobotBase.isSimulation() ? driveFieldOrientedAnglularVelocity : driveFieldOrientedDirectAngleSim);
+    // drivebase.setDefaultCommand(
+    //     !RobotBase.isSimulation() ? driveFieldOrientedAnglularVelocity : driveFieldOrientedDirectAngleSim);
   }
 
   /**
@@ -94,18 +93,18 @@ public class RobotContainer {
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
-    new JoystickButton(driverXbox, 1).onTrue((new InstantCommand(drivebase::zeroGyro)));
-    new JoystickButton(driverXbox, 3).onTrue(new InstantCommand(drivebase::lock));
+    // new JoystickButton(driverXbox, 1).onTrue((new InstantCommand(drivebase::zeroGyro)));
+    // new JoystickButton(driverXbox, 3).onTrue(new InstantCommand(drivebase::lock));
     // new JoystickButton(driverXbox, 3).whileTrue(new RepeatCommand(new
     // InstantCommand(drivebase::lock, drivebase)));
     Inputs.getShoot().onTrue(new Shoot());
     Inputs.getIntake().onTrue(new Intake());
     Inputs.getOuttake().onTrue(new Outtake());
-    Inputs.getLimelight().onTrue(new TrackAprilTag());
+    // Inputs.getLimelight().onTrue(new TrackAprilTag());
     
-    Inputs.elevatorMax().onTrue(new Elevator());
-    Inputs.elevatorMin().onTrue(new Elevator());
-    Inputs.getOverride().onTrue(new Elevator());
+    // Inputs.elevatorMax().onTrue(new Elevator());
+    // Inputs.elevatorMin().onTrue(new Elevator());
+    // Inputs.getOverride().onTrue(new Elevator());
   }
 
   /**
@@ -114,8 +113,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+    return null;
     // An example command will be run in autonomous
-    return drivebase.getAutonomousCommand("New Path", true);
+    // return drivebase.getAutonomousCommand("New Path", true);
   }
 
   public void setDriveMode() {
@@ -123,6 +123,6 @@ public class RobotContainer {
   }
 
   public void setMotorBrake(boolean brake) {
-    drivebase.setMotorBrake(brake);
+    // drivebase.setMotorBrake(brake);
   }
 }

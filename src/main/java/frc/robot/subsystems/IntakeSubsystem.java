@@ -4,23 +4,24 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.IntakeConstants;
 
 //REIVEW: Add a function to see if a game piece is in the intake
 public class IntakeSubsystem extends SubsystemBase {
 
   private static IntakeSubsystem instance;
   /** Creates a new IntakeSubsystem. */
-  private WPI_TalonSRX rightTalon;
-  private WPI_TalonSRX leftTalon;
+  private CANSparkMax rightTalon;
+  private CANSparkMax leftTalon;
   
 
   public IntakeSubsystem() {
-    leftTalon = new WPI_TalonSRX(Constants.IntakeConstants.intakeChannel1);
-    rightTalon = new WPI_TalonSRX(Constants.IntakeConstants.intakeChannel2);
+    leftTalon = new CANSparkMax(IntakeConstants.intakeID1, MotorType.kBrushed);
+    rightTalon = new CANSparkMax(IntakeConstants.intakeID2, MotorType.kBrushed);
   }
 
   public void intake() {

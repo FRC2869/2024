@@ -21,7 +21,7 @@ public class PivotFloorPickup extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakePivot.setPosition(Constants.PivotConstants.intakeFloorPosition);
+    intakePivot.setPos(Constants.PivotConstants.intakeFloorPosition);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
