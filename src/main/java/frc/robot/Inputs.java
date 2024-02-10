@@ -111,15 +111,27 @@ public class Inputs {
     
 
     public static double getManualElevatorSpeed(){
-        return (driver1Cmd.getRightTriggerAxis()-driver1Cmd.getLeftTriggerAxis())*.1;
+        double speed = (driver1Cmd.getRightTriggerAxis()-driver1Cmd.getLeftTriggerAxis());
+        if(Math.abs(speed)<.1){
+            speed = 0;
+        }
+        return speed*.25;
     }
     
     public static double getManualIntakePivotSpeed(){
-        return driver1Cmd.getLeftX()*.25;
+        double speed = driver1Cmd.getLeftX();
+        if(Math.abs(speed)<.1){
+            speed = 0;
+        }
+        return speed*.5;
     }
 
     public static double getManualShooterPivotSpeed(){
-        return driver1Cmd.getRightX()*.25;
+        double speed = driver1Cmd.getRightX();
+        if(Math.abs(speed)<.2){
+            speed = 0;
+        }
+        return speed;
     }
 
     public static Trigger getFeed() {

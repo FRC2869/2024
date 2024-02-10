@@ -43,11 +43,11 @@ public class ShooterSubsystem extends SubsystemBase {
     public void shoot() {
         leftShooter.set(.5);
         rightShooter.set(.5);
-        feeder.set(1);
+        feeder.set(-1);
     }
     
     public void intake() {
-        feeder.set(.25);
+        feeder.set(-.5);
     }
 
     public void stopFeeder(){

@@ -17,6 +17,7 @@ import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.Intake.Outtake;
 import frc.robot.commands.Shooter.DefaultShooterPivotCommand;
+import frc.robot.commands.Shooter.Feed;
 import frc.robot.commands.Shooter.Shoot;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotIntakeSubsystem;
@@ -97,9 +98,10 @@ public class RobotContainer {
     // new JoystickButton(driverXbox, 3).onTrue(new InstantCommand(drivebase::lock));
     // new JoystickButton(driverXbox, 3).whileTrue(new RepeatCommand(new
     // InstantCommand(drivebase::lock, drivebase)));
-    Inputs.getShoot().onTrue(new Shoot());
-    Inputs.getIntake().onTrue(new Intake());
-    Inputs.getOuttake().onTrue(new Outtake());
+    Inputs.getShoot().whileTrue(new Shoot());
+    Inputs.getIntake().whileTrue(new Intake());
+    Inputs.getOuttake().whileTrue(new Outtake());
+    Inputs.getFeed().whileTrue(new Feed());
     // Inputs.getLimelight().onTrue(new TrackAprilTag());
     
     // Inputs.elevatorMax().onTrue(new Elevator());

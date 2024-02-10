@@ -26,12 +26,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void intake() {
       leftTalon.set(.5);
-      rightTalon.set(.5);
+      rightTalon.set(-.5);
   }
 
   public void outtake() {
       leftTalon.set(-.5);
-      rightTalon.set(-.5);
+      rightTalon.set(.5);
   }
 
   public void stop() {

@@ -15,7 +15,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class Shoot extends Command {
 
   ShooterSubsystem shooter = ShooterSubsystem.getInstance();
-  private boolean hasRun;
+  private boolean hasRun = false;
   private double startTime;
   /** Creates a new Shoot. */
   public Shoot() {

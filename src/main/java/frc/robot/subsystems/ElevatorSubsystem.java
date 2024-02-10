@@ -24,11 +24,11 @@ public class ElevatorSubsystem extends SubsystemBase {
     private boolean posControl;
 
     public ElevatorSubsystem () {
-        elevator1 =  new CANSparkMax(0, MotorType.kBrushless);
-        elevator2 =  new CANSparkMax(0, MotorType.kBrushless);
+        elevator1 =  new CANSparkMax(18, MotorType.kBrushless);
+        elevator2 =  new CANSparkMax(19, MotorType.kBrushless);
         encoder1 = elevator1.getEncoder();
         encoder2 = elevator2.getEncoder();
-        elevator1.follow(elevator2, true);
+        // elevator1.follow(elevator2, true);
         //REVIEW: Look at 2023 code and add the initalize sparks function
     }
 
@@ -38,7 +38,10 @@ public class ElevatorSubsystem extends SubsystemBase {
     }
     //REVIEW: Format your subsystems like this. Have functions write their values to variables and only do .set once in periodic.
     public void setSpeed(double speed) {
-        this.speed = speed;
+        // this.speed = speed;
+        elevator1.set(speed);
+        elevator2.set(-speed);
+        System.out.println(speed);
     }
 
     public void setPos(double pos) {
@@ -59,7 +62,8 @@ public class ElevatorSubsystem extends SubsystemBase {
             //This is how to set position on Sparks
             elevator2.getPIDController().setReference(pos, ControlType.kPosition);
         }else{
-            elevator2.set(-speed);
+            // elevator2.set(-speed);
+            // elevator1.set(speed);
         }
     }
 }

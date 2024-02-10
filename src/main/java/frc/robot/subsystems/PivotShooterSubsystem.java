@@ -8,8 +8,8 @@ import com.revrobotics.SparkPIDController;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.IntakeConstants;
-import frc.robot.Constants.IntakeConstants.PositionsIntake;
+import frc.robot.Constants.ShooterConstants;
+import frc.robot.Constants.ShooterConstants.PositionsShooter;
 
 public class PivotShooterSubsystem extends SubsystemBase {
     private static PivotShooterSubsystem pivot;
@@ -30,7 +30,7 @@ public class PivotShooterSubsystem extends SubsystemBase {
     }
 
     public PivotShooterSubsystem() {
-        pivotMotor = new CANSparkFlex(IntakeConstants.PivotID, MotorType.kBrushless);
+        pivotMotor = new CANSparkFlex(ShooterConstants.PivotID, MotorType.kBrushless);
         isPosControl = false;
         encoder = pivotMotor.getEncoder();
         configurePivotMotor();
@@ -39,18 +39,18 @@ public class PivotShooterSubsystem extends SubsystemBase {
 	private void configurePivotMotor() {
 		// pivotMotor.restoreFactoryDefaults();
 		pid = pivotMotor.getPIDController();
-        pid.setP(IntakeConstants.kP);
-        pid.setI(IntakeConstants.kI);
-        pid.setD(IntakeConstants.kD);
-        pid.setIZone(IntakeConstants.kIz);
-        pid.setFF(IntakeConstants.kF);
-        pid.setOutputRange(IntakeConstants.kMinOutput, IntakeConstants.kMaxOutput);
-        encoder.setPositionConversionFactor(IntakeConstants.gearRatio);
-        encoder.setPosition(IntakeConstants.startingPosition);
+        pid.setP(ShooterConstants.kP);
+        pid.setI(ShooterConstants.kI);
+        pid.setD(ShooterConstants.kD);
+        pid.setIZone(ShooterConstants.kIz);
+        pid.setFF(ShooterConstants.kF);
+        pid.setOutputRange(ShooterConstants.kMinOutput, ShooterConstants.kMaxOutput);
+        encoder.setPositionConversionFactor(ShooterConstants.gearRatio);
+        encoder.setPosition(ShooterConstants.startingPosition);
 	}
 
     public void setPos(double pos) {
-        this.pos = MathUtil.clamp(pos, IntakeConstants.kMinAngle, IntakeConstants.kMaxAngle);
+        this.pos = MathUtil.clamp(pos, ShooterConstants.kMinAngle, ShooterConstants.kMaxAngle);
     }
 
     public void setSpeed(double speed) {
@@ -70,10 +70,10 @@ public class PivotShooterSubsystem extends SubsystemBase {
     }
 
     public boolean isAtPosition(){
-		if(currentPos != PositionsIntake.STORAGE2)
+		if(currentPos != PositionsShooter.STORAGE2)
 			return Math.abs(pos-getAngle())<.5;
 		else 
-			return pos<IntakeConstants.getTargetPos(PositionsIntake.STORAGE2);
+			return pos<ShooterConstants.getTargetPos(PositionsShooter.STORAGE2);
 	}
 
     @Override

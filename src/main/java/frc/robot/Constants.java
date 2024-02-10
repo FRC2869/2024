@@ -66,26 +66,36 @@ public final class Constants
 
   public static class ShooterConstants
   {
-    public static final int leftID = 0;
-    public static final int rightID = 0;
-    public static final int ID775 = 0;
+    public static final int leftID = 21;
+    public static final int rightID = 22;
     public static final int kP = 0;
     public static final int kI = 0;
     public static final int kD = 0;
-    public static final int feederID = 0;
+    public static final int feederID = 23;
+    public static final int PivotID = 20;
+    public static final double gearRatio = 0;
+    public static final double startingPosition = 0;
+    public static final double kMinAngle = 0;
+    public static final double kMaxAngle = 0;
     public static double kMinOutput;
     public static double kF;
     public static double kMaxOutput;
     public static double kIz;
+    public static enum PositionsShooter {
+      STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
+    }
+
+    public static double getTargetPos(PositionsShooter storage2) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'getTargetPos'");
+    }
   }
   public static class IntakeConstants
   { 
-    public static final int intakeChannel1 = 1;
-    public static final int intakeChannel2 = 5;
     public static final double speed = 3.3;
-    public static final int PivotID = 0;
-    public static final int intakeID1 = 0;
-    public static final int intakeID2 = 0;
+public static final int PivotID = 15;
+    public static final int intakeID1 = 16;
+    public static final int intakeID2 = 17;
     public static final double kMinOutput = 0;
     public static final double kMaxOutput = 0;
     public static final double kF = 0;
