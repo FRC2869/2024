@@ -126,7 +126,7 @@ public class Inputs {
         if(Math.abs(speed)<.2){
             speed = 0;
         }
-        return speed;
+        return speed*.5;
     }
 
     public static Trigger getFeed() {

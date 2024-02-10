@@ -36,13 +36,13 @@ public class ShooterSubsystem extends SubsystemBase {
     //     configs.apply(slotCons);
     // }
     public void rev() {
-        leftShooter.set(.5);
-        rightShooter.set(.5);
+        leftShooter.set(-1);
+        rightShooter.set(1);
     }
 
     public void shoot() {
-        leftShooter.set(.5);
-        rightShooter.set(.5);
+        leftShooter.set(-1);
+        rightShooter.set(1);
         feeder.set(-1);
     }
     

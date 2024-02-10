@@ -39,7 +39,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     //REVIEW: Format your subsystems like this. Have functions write their values to variables and only do .set once in periodic.
     public void setSpeed(double speed) {
         // this.speed = speed;
-        elevator1.set(speed);
+        elevator1.set(-speed);
         elevator2.set(-speed);
         System.out.println(speed);
     }
@@ -60,7 +60,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void periodic() {
         if(posControl){
             //This is how to set position on Sparks
-            elevator2.getPIDController().setReference(pos, ControlType.kPosition);
+            // elevator2.getPIDController().setReference(pos, ControlType.kPosition);
         }else{
             // elevator2.set(-speed);
             // elevator1.set(speed);

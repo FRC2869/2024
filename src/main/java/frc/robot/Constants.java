@@ -93,7 +93,7 @@ public final class Constants
   public static class IntakeConstants
   { 
     public static final double speed = 3.3;
-public static final int PivotID = 15;
+    public static final int PivotID = 15;
     public static final int intakeID1 = 16;
     public static final int intakeID2 = 17;
     public static final double kMinOutput = 0;
