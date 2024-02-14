@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkBase.IdleMode;
+
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
@@ -57,11 +59,37 @@ public final class Constants
 
   public static class ElevatorConstants
   {
+    public static interface Motor1 {
+      public static final boolean inverted = false;
+      public static final int currentLimit = 40;
+    public static final IdleMode idleMode = IdleMode.kBrake;
+    }
+
+    public static interface Motor2 {
+      public static final boolean inverted = false;
+      public static final int currentLimit = 40;
+    public static final IdleMode idleMode = IdleMode.kBrake;
+    }
+    public static enum ElevatorPosition {
+      STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
+    }
     //SET THIS
     public static final double maxHeight = 10.25;
     public static final double minHeight = 0;
     public static final double speed = 0.5;
     public static final double midHeight = 5.125;
+    public static final int kMaxPower = 0;
+    public static final double gearRatio = 0;
+    public static final double startingPosition = 0;
+    public static final double kF = 0;
+    public static final double kIz = 0;
+    public static final double kD = 0;
+    public static final double kI = 0;
+    public static final double kP = 0;
+    
+    public static final double storagePosition = 0;
+    public static final double transferPosition = 0;
+    public static final double floorPosition = 0;
   }
 
   public static class ShooterConstants
@@ -81,13 +109,17 @@ public final class Constants
     public static double kF;
     public static double kMaxOutput;
     public static double kIz;
+    
     public static enum PositionsShooter {
       STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
     }
 
-    public static double getTargetPos(PositionsShooter storage2) {
+    public static double getTargetPos(PositionsShooter pos) {
       // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Unimplemented method 'getTargetPos'");
+      switch(pos){
+        default:
+          return 0;
+      }
     }
   }
   public static class IntakeConstants
@@ -111,7 +143,6 @@ public final class Constants
     public static enum PositionsIntake {
       STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
     }
-
     public static double getTargetPos(PositionsIntake storage2) {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'getTargetPos'");

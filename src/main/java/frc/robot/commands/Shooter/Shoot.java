@@ -4,12 +4,8 @@
 
 package frc.robot.commands.Shooter;
 
-import java.util.Timer;
-
-import edu.wpi.first.hal.simulation.ConstBufferCallback;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.Inputs;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class Shoot extends Command {

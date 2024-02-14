@@ -22,7 +22,7 @@ public class PivotIntakeSubsystem extends SubsystemBase {
 
     private double speed;
 
-    private Object currentPos;
+    private PositionsIntake currentPos;
 
     public static PivotIntakeSubsystem getInstance() {
         if (pivot == null) pivot = new PivotIntakeSubsystem();
@@ -37,7 +37,7 @@ public class PivotIntakeSubsystem extends SubsystemBase {
     }
 
 	private void configurePivotMotor() {
-		// pivotMotor.restoreFactoryDefaults();
+		pivotMotor.restoreFactoryDefaults();
 		pid = pivotMotor.getPIDController();
         pid.setP(IntakeConstants.kP);
         pid.setI(IntakeConstants.kI);
@@ -58,7 +58,7 @@ public class PivotIntakeSubsystem extends SubsystemBase {
     }
 
     public void resetPivot() {
-        encoder.setPosition(0);
+        encoder.setPosition(IntakeConstants.startingPosition);
     }
 
     public double getAngle(){
@@ -76,6 +76,26 @@ public class PivotIntakeSubsystem extends SubsystemBase {
 			return pos<IntakeConstants.getTargetPos(PositionsIntake.STORAGE2);
 	}
 
+    public void adjustUp() {
+		pos += 2;
+	}
+
+	public void adjustDown() {
+		pos -= 2;
+	}
+
+    public void setCurrentPosition(PositionsIntake pos) {
+		currentPos = pos;
+	}
+
+    public void savePositions() {
+		switch (currentPos) {
+			default:
+				break;
+
+		}
+    }
+
     @Override
     public void periodic() {
         if (isPosControl) {
@@ -84,5 +104,4 @@ public class PivotIntakeSubsystem extends SubsystemBase {
             pivotMotor.set(speed);
         }
     }
-
 }

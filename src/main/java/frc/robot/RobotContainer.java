@@ -6,10 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Elevator.DefaultElevatorCommand;
 import frc.robot.commands.Elevator.Elevator;
@@ -33,7 +31,9 @@ import frc.robot.subsystems.PivotShooterSubsystem;
  * trigger mappings) should be declared here.
  */
 public class RobotContainer {
-
+  enum Position {
+    
+  }
   // The robot's subsystems and commands are defined here...
   // private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
       // "swerve"));
@@ -102,6 +102,8 @@ public class RobotContainer {
     Inputs.getIntake().whileTrue(new Intake());
     Inputs.getOuttake().whileTrue(new Outtake());
     Inputs.getFeed().whileTrue(new Feed());
+    Inputs.elevatorMax().whileTrue(new Elevator());
+    Inputs.elevatorMin().whileTrue(new Elevator());
     // Inputs.getLimelight().onTrue(new TrackAprilTag());
     
     // Inputs.elevatorMax().onTrue(new Elevator());

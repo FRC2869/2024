@@ -15,32 +15,33 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private static IntakeSubsystem instance;
   /** Creates a new IntakeSubsystem. */
-  private CANSparkMax rightTalon;
-  private CANSparkMax leftTalon;
+  private CANSparkMax rightMotor;
+  private CANSparkMax leftMotor;
   
-
   public IntakeSubsystem() {
-    leftTalon = new CANSparkMax(IntakeConstants.intakeID1, MotorType.kBrushed);
-    rightTalon = new CANSparkMax(IntakeConstants.intakeID2, MotorType.kBrushed);
-  }
-
-  public void intake() {
-      leftTalon.set(.5);
-      rightTalon.set(-.5);
-  }
-
-  public void outtake() {
-      leftTalon.set(-.5);
-      rightTalon.set(.5);
-  }
-
-  public void stop() {
-    leftTalon.set(0);
-    rightTalon.set(0);
+    leftMotor = new CANSparkMax(IntakeConstants.intakeID1, MotorType.kBrushed);
+    rightMotor = new CANSparkMax(IntakeConstants.intakeID2, MotorType.kBrushed);
   }
 
   public static IntakeSubsystem getInstance() {
     if (instance == null) instance = new IntakeSubsystem();
     return instance;
   }
+
+  public void intake() {
+      leftMotor.set(.5);
+      rightMotor.set(-.5);
+  }
+
+  public void outtake() {
+      leftMotor.set(-.5);
+      rightMotor.set(.5);
+  }
+
+  public void stop() {
+    leftMotor.set(0);
+    rightMotor.set(0);
+  }
+
+
 }

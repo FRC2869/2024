@@ -22,7 +22,7 @@ public class PivotShooterSubsystem extends SubsystemBase {
 
     private double speed;
 
-    private Object currentPos;
+    private PositionsShooter currentPos;
 
     public static PivotShooterSubsystem getInstance() {
         if (pivot == null) pivot = new PivotShooterSubsystem();
@@ -37,7 +37,7 @@ public class PivotShooterSubsystem extends SubsystemBase {
     }
 
 	private void configurePivotMotor() {
-		// pivotMotor.restoreFactoryDefaults();
+		pivotMotor.restoreFactoryDefaults();
 		pid = pivotMotor.getPIDController();
         pid.setP(ShooterConstants.kP);
         pid.setI(ShooterConstants.kI);
@@ -58,7 +58,7 @@ public class PivotShooterSubsystem extends SubsystemBase {
     }
 
     public void resetPivot() {
-        encoder.setPosition(0);
+        encoder.setPosition(ShooterConstants.startingPosition);
     }
 
     public double getAngle(){
@@ -76,6 +76,26 @@ public class PivotShooterSubsystem extends SubsystemBase {
 			return pos<ShooterConstants.getTargetPos(PositionsShooter.STORAGE2);
 	}
 
+    public void adjustUp() {
+		pos += 2;
+	}
+
+	public void adjustDown() {
+		pos -= 2;
+	}
+
+    public void setCurrentPosition(PositionsShooter pos) {
+		currentPos = pos;
+	}
+
+    public void savePositions() {
+		switch (currentPos) {
+			default:
+				break;
+
+		}
+    }
+
     @Override
     public void periodic() {
         if (isPosControl) {
@@ -84,5 +104,4 @@ public class PivotShooterSubsystem extends SubsystemBase {
             pivotMotor.set(speed);
         }
     }
-
 }
