@@ -4,11 +4,8 @@
 
 package frc.robot.commands.Elevator;
 
-import com.revrobotics.CANSparkBase.ControlType;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.Constants.ElevatorConstants;
 import frc.robot.Constants.ElevatorConstants.ElevatorPosition;
 import frc.robot.subsystems.ElevatorSubsystem;
 
@@ -16,7 +13,7 @@ public class ElevatorCommand extends Command {
   ElevatorSubsystem elevator = ElevatorSubsystem.getInstance();
   private double position; 
   /** Creates a new ElevatorCommand. */
-  public ElevatorCommand(ElevatorPosition position, double exactPosition) {
+  public ElevatorCommand(ElevatorPosition position) {
     addRequirements(elevator);
     switch (position) {
       case STARTING:
@@ -35,9 +32,12 @@ public class ElevatorCommand extends Command {
         this.position = Constants.ElevatorConstants.storagePosition;
         return;
       default:
-        this.position = exactPosition;
+        this.position = 0;
     }
     // Use addRequirements() here to declare subsystem dependencies.
+  }
+  public ElevatorCommand(double position) {
+    this.position = position;
   }
 
   // Called when the command is initially scheduled.

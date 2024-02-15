@@ -24,7 +24,8 @@ public class Elevator extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Inputs.getOverride().getAsBoolean()) {
+    //if (Inputs.getOverride().getAsBoolean()) {
+      if (true) {
             elevator.setSpeed(Inputs.getOverrideY() * 0.25);
         } else if (Inputs.elevatorMax().getAsBoolean() && !Inputs.elevatorMin().getAsBoolean()) {
             if (elevator.getPosition() < ElevatorConstants.maxHeight) {

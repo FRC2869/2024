@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ElevatorConstants.ElevatorPosition;
 import frc.robot.commands.Elevator.DefaultElevatorCommand;
 import frc.robot.commands.Elevator.Elevator;
+import frc.robot.commands.Elevator.ElevatorCommand;
 import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.Intake.Outtake;
@@ -31,9 +33,6 @@ import frc.robot.subsystems.PivotShooterSubsystem;
  * trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  enum Position {
-    
-  }
   // The robot's subsystems and commands are defined here...
   // private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
       // "swerve"));
@@ -99,11 +98,15 @@ public class RobotContainer {
     // new JoystickButton(driverXbox, 3).whileTrue(new RepeatCommand(new
     // InstantCommand(drivebase::lock, drivebase)));
     Inputs.getShoot().whileTrue(new Shoot());
-    Inputs.getIntake().whileTrue(new Intake());
-    Inputs.getOuttake().whileTrue(new Outtake());
+    Inputs.getIntakeIn().whileTrue(new Intake());
+    Inputs.getIntakeOut().whileTrue(new Outtake());
     Inputs.getFeed().whileTrue(new Feed());
     Inputs.elevatorMax().whileTrue(new Elevator());
     Inputs.elevatorMin().whileTrue(new Elevator());
+    Inputs.getElevatorBasePos().whileTrue(new ElevatorCommand(ElevatorPosition.STARTING));
+    Inputs.getElevatorAmpPos().whileTrue(new ElevatorCommand(null));
+    Inputs.getElevatorSpeakerPos().whileTrue(new ElevatorCommand(null));
+    Inputs.getElevatorTransferPos().whileTrue(new ElevatorCommand(ElevatorPosition.TRANSFER));
     // Inputs.getLimelight().onTrue(new TrackAprilTag());
     
     // Inputs.elevatorMax().onTrue(new Elevator());
