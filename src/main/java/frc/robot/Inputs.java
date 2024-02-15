@@ -126,41 +126,7 @@ public class Inputs {
 
         return speed;
     }
-
-    public static Trigger getOverride() {
-        return driver1Cmd.start();
-    }
-
-    public static double getOverrideY() {
-        return elevatorCmd.getY();
-    }
-
-    public static Trigger elevatorMax() {
-        return driver1Cmd.rightBumper();
-    }
-
-    public static Trigger elevatorMin() {
-        return driver1Cmd.leftBumper();
-    }
-
-    public static Trigger getLimelight() {
-        // return driver1Cmd.a();
-        return null;
-    }
-
-    public static Trigger getShoot() {
-        return driver1Cmd.b();
-    }
-
-    public static Trigger getIntake() {
-        return driver1Cmd.y();
-    }
-
-    public static Trigger getOuttake() {
-        return driver1Cmd.x();
-    }
     
-
     public static double getManualElevatorSpeed(){
         double speed = (driver1Cmd.getRightTriggerAxis()-driver1Cmd.getLeftTriggerAxis());
         if(Math.abs(speed)<.1){
@@ -185,8 +151,61 @@ public class Inputs {
         return speed*.5;
     }
 
+    public static double getOverrideY() {
+        return elevatorCmd.getY();
+    }
+
+    public static Trigger getTransfer() {
+        return operatorCmd.button(0);
+    }
+    public static Trigger getSpeakerScoreClose() {
+        return operatorCmd.button(1);
+    }
+    public static Trigger getSpeakerScoreFar() {
+        return operatorCmd.button(2);
+    }
+    public static Trigger getAmpScore() {
+        return operatorCmd.button(3);
+    }
+    public static Trigger getIntakeIn() {
+        return operatorCmd.button(4);
+    }
+    public static Trigger getIntakeOut() {
+        return operatorCmd.button(5);
+    }
+    //Ankur please donate 10 different buttons to the function below
+    public static Trigger getStopIntake() {
+        return operatorCmd.button(6);
+    }
+    public static Trigger getStopIntakePivot() {
+        return operatorCmd.button(7);
+    }
+    public static Trigger getElevatorBasePos() {
+        return operatorCmd.button(8);
+    }
+    public static Trigger getElevatorTransferPos() {
+        return operatorCmd.button(9);
+    }
+    public static Trigger getElevatorAmpPos() {
+        return operatorCmd.button(10);
+    }
+    public static Trigger getElevatorSpeakerPos() {
+        return operatorCmd.button(11);
+    }
+    public static Trigger getStopElevator() {
+        return operatorCmd.button(12);
+    }
+    public static Trigger savePosition() {
+        return operatorCmd.button(13);
+    }
+    public static Trigger stopShooterPivot() {
+        return operatorCmd.button(14);
+    }
+    public static Trigger getShoot() {
+        return operatorCmd.button(15);
+    }
     public static Trigger getFeed() {
-        return driver1Cmd.a();
+        return operatorCmd.button(15);
     }
 }
 
