@@ -19,17 +19,14 @@ public class ElevatorCommand extends Command {
       case STARTING:
         this.position = Constants.ElevatorConstants.startingPosition;
         return;
-      case FLOOR:
-        this.position = Constants.ElevatorConstants.floorPosition;
-        return;
-      case STORAGE1:
-        this.position = Constants.ElevatorConstants.storagePosition;
-        return;
       case TRANSFER:
         this.position = Constants.ElevatorConstants.transferPosition;
         return;
-      case STORAGE2:
-        this.position = Constants.ElevatorConstants.storagePosition;
+      case SPEAKER:
+        this.position = Constants.ElevatorConstants.speakerPosition;
+        return;
+      case AMP:
+        this.position = Constants.ElevatorConstants.ampPosition;
         return;
       default:
         this.position = 0;

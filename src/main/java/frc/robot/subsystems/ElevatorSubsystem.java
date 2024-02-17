@@ -105,6 +105,11 @@ public class ElevatorSubsystem extends SubsystemBase {
         return (encoder1.getPosition()+encoder2.getPosition())/2;
     }
 
+    public void stop() {
+        elevator1.stopMotor();
+        elevator2.stopMotor();
+    }
+
     @Override
     public void periodic() {
         if(posControl){

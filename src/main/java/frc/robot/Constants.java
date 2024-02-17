@@ -71,7 +71,7 @@ public final class Constants
     public static final IdleMode idleMode = IdleMode.kBrake;
     }
     public static enum ElevatorPosition {
-      STARTING, FLOOR, STORAGE1, TRANSFER, STORAGE2
+      STARTING, TRANSFER, AMP, SPEAKER
     }
     //SET THIS
     public static final double maxHeight = 10.25;
@@ -87,9 +87,9 @@ public final class Constants
     public static final double kI = 0;
     public static final double kP = 0;
     
-    public static final double storagePosition = 0;
     public static final double transferPosition = 0;
-    public static final double floorPosition = 0;
+    public static final double ampPosition = 0;
+    public static final double speakerPosition = 0;
   }
 
   public static class ShooterConstants

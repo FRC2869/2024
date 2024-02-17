@@ -37,7 +37,7 @@ public class Inputs {
 	 *  Button Board:
 	 * 	 1 - Storage 
 	 * 	  Auto:
-	 *      - Intake
+	 *      + Intake
      *      - Transfer
      *      - Setup Speaker Score Close
      *      - Setup Speaker Score Far
@@ -45,16 +45,16 @@ public class Inputs {
 	 *    Intake:
 	 *      - Intake Pivot Down
 	 *      - Intake Pivot Up
-     *      - Start Intake In
-     *      - Start Intake Out
-	 *      - Stop Intake
-     *      - Stop Intake Pivot
+     *      + Start Intake In
+     *      + Start Intake Out
+	 *      + Stop Intake
+     *      + Stop Intake Pivot
      *    Elevator:
-     *      - Elevator Base Position
-     *      - Elevator Transfer Position
-     *      - Elevator Amp Position
-     *      - Elevator Speaker Position
-     *      - Stop Elevator
+     *      + Elevator Base Position
+     *      + Elevator Transfer Position
+     *      + Elevator Amp Position
+     *      + Elevator Speaker Position
+     *      + Stop Elevator
 	 *    Adjustment:
 	 *      - Intake Pivot Up
 	 *      - Intake Pivot Down
@@ -63,7 +63,7 @@ public class Inputs {
      *      - Elevator Up
      *      - Elevator Down
 	 *      - Save Position
-     *      - Stop Pivot
+     *      + Stop Pivot
      *    
 	 *   
 	 */
@@ -199,7 +199,7 @@ public class Inputs {
         return operatorCmd.button(14);
     }
     //Ankur please donate 20 different buttons to the function below
-    public static Trigger stopShooterPivot() {
+    public static Trigger getStopShooterPivot() {
         return operatorCmd.button(15);
     }
     public static Trigger getShoot() {
@@ -207,6 +207,9 @@ public class Inputs {
     }
     public static Trigger getFeed() {
         return operatorCmd.button(17);
+    }
+    public static Trigger stopPivot() {
+        return driver1Cmd.button(18);
     }
     public static Trigger elevatorMax() {
         return driver1Cmd.rightBumper();

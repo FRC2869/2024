@@ -96,6 +96,10 @@ public class PivotShooterSubsystem extends SubsystemBase {
 		}
     }
 
+    public void stop() {
+        pivotMotor.stopMotor();
+    }
+
     @Override
     public void periodic() {
         if (isPosControl) {

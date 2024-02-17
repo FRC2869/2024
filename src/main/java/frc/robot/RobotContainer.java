@@ -6,16 +6,21 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.ElevatorConstants.ElevatorPosition;
+import frc.robot.commands.StopIntakePivot;
+import frc.robot.commands.StopShooterPivot;
 import frc.robot.commands.Elevator.DefaultElevatorCommand;
 import frc.robot.commands.Elevator.Elevator;
 import frc.robot.commands.Elevator.ElevatorCommand;
+import frc.robot.commands.Elevator.StopElevator;
 import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.Intake.Outtake;
+import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.DefaultShooterPivotCommand;
 import frc.robot.commands.Shooter.Feed;
 import frc.robot.commands.Shooter.Shoot;
@@ -97,16 +102,26 @@ public class RobotContainer {
     // new JoystickButton(driverXbox, 3).onTrue(new InstantCommand(drivebase::lock));
     // new JoystickButton(driverXbox, 3).whileTrue(new RepeatCommand(new
     // InstantCommand(drivebase::lock, drivebase)));
-    Inputs.getShoot().whileTrue(new Shoot());
+    //Intake + Shoot
     Inputs.getIntakeIn().whileTrue(new Intake());
     Inputs.getIntakeOut().whileTrue(new Outtake());
+    Inputs.getStopIntake().whileTrue(new StopIntake());
+    Inputs.getShoot().whileTrue(new Shoot());
     Inputs.getFeed().whileTrue(new Feed());
+    Inputs.getStopIntakePivot().onTrue(new StopIntakePivot());
+    Inputs.getStopShooterPivot().onTrue(new StopShooterPivot());
+    Inputs.getStopIntake().onTrue(new ParallelCommandGroup(new StopIntakePivot(), new StopShooterPivot()));
+
+    //Elevator
+    Inputs.getElevatorBasePos().whileTrue(new ElevatorCommand(ElevatorPosition.STARTING));
+    Inputs.getElevatorAmpPos().whileTrue(new ElevatorCommand(ElevatorPosition.AMP));
+    Inputs.getElevatorSpeakerPos().whileTrue(new ElevatorCommand(ElevatorPosition.SPEAKER));
+    Inputs.getElevatorTransferPos().whileTrue(new ElevatorCommand(ElevatorPosition.TRANSFER));
+    Inputs.getStopElevator().onTrue(new StopElevator());
+
     Inputs.elevatorMax().whileTrue(new Elevator());
     Inputs.elevatorMin().whileTrue(new Elevator());
-    Inputs.getElevatorBasePos().whileTrue(new ElevatorCommand(ElevatorPosition.STARTING));
-    Inputs.getElevatorAmpPos().whileTrue(new ElevatorCommand(null));
-    Inputs.getElevatorSpeakerPos().whileTrue(new ElevatorCommand(null));
-    Inputs.getElevatorTransferPos().whileTrue(new ElevatorCommand(ElevatorPosition.TRANSFER));
+
     // Inputs.getLimelight().onTrue(new TrackAprilTag());
     
     // Inputs.elevatorMax().onTrue(new Elevator());
