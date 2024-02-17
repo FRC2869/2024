@@ -25,7 +25,7 @@ public class DefaultShooterPivotCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pivot.setSpeed(Inputs.getManualShooterPivotSpeed());
+    pivot.setSpeed(Inputs.getManualShooterPivotSpeed() * 0.25);
   }
 
   // Called once the command ends or is interrupted.

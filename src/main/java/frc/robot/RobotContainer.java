@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.Elevator.DefaultElevatorCommand;
-import frc.robot.commands.Elevator.Elevator;
+// import frc.robot.commands.Elevator.Elevator;
 import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.Intake.Outtake;
@@ -52,8 +52,8 @@ public class RobotContainer {
     Inputs.getIntake().whileTrue(new Intake());
     Inputs.getOuttake().whileTrue(new Outtake());
     Inputs.getFeed().whileTrue(new Feed());
-    Inputs.elevatorMax().whileTrue(new Elevator());
-    Inputs.elevatorMin().whileTrue(new Elevator());
+    // Inputs.elevatorMax().whileTrue(new Elevator());
+    // Inputs.elevatorMin().whileTrue(new Elevator());
 
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
         drivetrain.applyRequest(() -> drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with
@@ -62,8 +62,8 @@ public class RobotContainer {
             .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
         ));
 
-    joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick.b().whileTrue(drivetrain
+    joystick.leftBumper().whileTrue(drivetrain.applyRequest(() -> brake));
+    joystick.rightBumper().whileTrue(drivetrain
         .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
