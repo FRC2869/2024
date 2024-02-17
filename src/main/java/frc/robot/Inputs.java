@@ -60,8 +60,8 @@ public class Inputs {
 	 *      - Intake Pivot Down
 	 *      - Shooter Pivot Up
 	 *      - Shooter Pivot Down
-     *      - Elevator Up
-     *      - Elevator Down
+     *      + Elevator Up
+     *      + Elevator Down
 	 *      - Save Position
      *      + Stop Pivot
      *    
@@ -211,6 +211,25 @@ public class Inputs {
     public static Trigger stopPivot() {
         return driver1Cmd.button(18);
     }
+    public static Trigger getIntakePivotDown() {
+        return driver1Cmd.button(19);
+    }
+    public static Trigger getIntakePivotUp() {
+        return driver1Cmd.button(19);
+    }
+    public static Trigger getShooterPivotDown() {
+        return driver1Cmd.button(20);
+    }
+    public static Trigger getShooterPivotUp() {
+        return driver1Cmd.button(21);
+    }
+    public static Trigger getElevatorDown() {
+        return driver1Cmd.button(22);
+    }
+    public static Trigger getElevatorUp() {
+        return driver1Cmd.button(23);
+    }
+
     public static Trigger elevatorMax() {
         return driver1Cmd.rightBumper();
     }

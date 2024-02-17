@@ -16,6 +16,7 @@ import frc.robot.commands.StopShooterPivot;
 import frc.robot.commands.Elevator.DefaultElevatorCommand;
 import frc.robot.commands.Elevator.Elevator;
 import frc.robot.commands.Elevator.ElevatorCommand;
+import frc.robot.commands.Elevator.SetElevatorSpeed;
 import frc.robot.commands.Elevator.StopElevator;
 import frc.robot.commands.Intake.DefaultIntakeCommand;
 import frc.robot.commands.Intake.Intake;
@@ -118,6 +119,8 @@ public class RobotContainer {
     Inputs.getElevatorSpeakerPos().whileTrue(new ElevatorCommand(ElevatorPosition.SPEAKER));
     Inputs.getElevatorTransferPos().whileTrue(new ElevatorCommand(ElevatorPosition.TRANSFER));
     Inputs.getStopElevator().onTrue(new StopElevator());
+    Inputs.getElevatorDown().onTrue(new SetElevatorSpeed(-.5));
+    Inputs.getElevatorUp().onTrue(new SetElevatorSpeed(.5));
 
     Inputs.elevatorMax().whileTrue(new Elevator());
     Inputs.elevatorMin().whileTrue(new Elevator());
