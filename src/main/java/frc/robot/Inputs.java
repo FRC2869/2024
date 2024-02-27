@@ -135,13 +135,13 @@ public class Inputs {
         return speed*.25;
     }
     
-    public static double getManualIntakePivotSpeed(){
-        double speed = driver1Cmd.getLeftX();
-        if(Math.abs(speed)<.1){
-            speed = 0;
-        }
-        return speed*.5;
-    }
+    // public static double getManualIntakePivotSpeed(){
+    //     double speed = driver1Cmd.getLeftX();
+    //     if(Math.abs(speed)<.1){
+    //         speed = 0;
+    //     }
+    //     return speed*.5;
+    // }
 
     public static double getManualShooterPivotSpeed(){
         double speed = driver1Cmd.getRightX();
