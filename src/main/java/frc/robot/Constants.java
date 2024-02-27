@@ -53,8 +53,8 @@ public final class Constants
     public static final double RIGHT_X_DEADBAND = 0.01;
     public static final double TURN_CONSTANT = 0.75;
     public static final int driver1ControllerPort = 0;
-    public static final int operatorControllerPort = 0;
-    public static final int elevatorControllerPort = 0;
+    public static final int operatorControllerPort = 1;
+    public static final int elevatorControllerPort = 2;
   }
 
   public static class ElevatorConstants
